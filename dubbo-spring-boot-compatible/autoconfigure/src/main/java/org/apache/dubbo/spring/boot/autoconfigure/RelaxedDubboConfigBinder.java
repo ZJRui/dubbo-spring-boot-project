@@ -30,7 +30,7 @@ import java.util.Map;
  *
  * @since 2.7.0
  */
-class RelaxedDubboConfigBinder implements ConfigurationBeanBinder {
+public class RelaxedDubboConfigBinder implements ConfigurationBeanBinder {
 
     @Override
     public void bind(Map<String, Object> configurationProperties, boolean ignoreUnknownFields,

@@ -41,7 +41,18 @@ import static org.springframework.boot.context.properties.source.ConfigurationPr
  *
  * @since 2.7.0
  */
-class BinderDubboConfigBinder implements ConfigurationBeanBinder {
+
+/**
+ *
+ * 不加修饰符的时候 即直接声明 class A{ }
+ *
+ * 在这种情况下，class前面没有加任何的访问修饰符，通常称为“默认访问模式”，
+ * 在该模式下，这个类只能被同一个包中的类访问或引用，这一访问特性又称包访问性。
+ *
+ * BinderDubboConfigBinder类如果不加public 那么 sachin 包下的DubboAutoConfiguration 就无法访问
+ *
+ */
+public class BinderDubboConfigBinder implements ConfigurationBeanBinder {
 
     @Override
     public void bind(Map<String, Object> configurationProperties, boolean ignoreUnknownFields,
