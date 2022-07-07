@@ -109,9 +109,32 @@ public class DubboAutoConfiguration {
      * @see EnableDubboConfig
      * @see DubboConfigConfiguration.Multiple
      */
+    /**
+     * havingValue :
+     * 匹配规则：属性文件中查找key（prefix+"."+name）
+     *
+     * 属性文件中设置了key的值value：
+     *
+     * ConditionalOnProperty设置了havingValue：value=havingvalue则匹配，若不等则不匹配
+     *
+     * ConditionalOnproperty没有设置havingValue：value不等于false则匹配，若为false，则不匹配
+     *
+     * 属性文件中没有设置key：
+     *
+     * ConditionalOnProperty中matchingIfMissing：true匹配，false不匹配
+     */
     @ConditionalOnProperty(name = MULTIPLE_CONFIG_PROPERTY_NAME, havingValue = "true")
     @EnableDubboConfig(multiple = true)
     protected static class MultipleDubboConfigConfiguration {
+        /**
+         *
+         *    Dubbo框架支持一个dubbo应用对应多个配置信息（比如多配置中心）  默认支持单配置 SingleDubboConfigConfiguration
+         *
+         *      如果有dubbo.config.mutilple=true则为会注册MultipleDubboConfigConfiguration  支持多注册中心主要应用场景：测试环境相关服务资源不匹配，生产环境平滑迁移。
+         *
+         * 这两个类主要是起到标识作用并没有实际作用（没有被bean实例化）主要是这两个类被注解@EnableDubboConfig修饰，该注解又引入了一个DubboConfigConfigurationSelector。
+         *
+         */
     }
 
 }
